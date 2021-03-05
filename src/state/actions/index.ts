@@ -1,20 +1,20 @@
-import { ActionType } from '../action-types';
+import { ActionTypes } from '../action-types'
 
 interface SearchRepositoriesAction {
-  type: ActionType.SEARCH_REPOSITORIES;
+  type: ActionTypes.SEARCH_REPOSITORIES
 }
 
 interface SearchRepositoriesSuccessAction {
-  type: ActionType.SEARCH_REPOSITORIES_SUCCESS;
-  payload: string[];
+  type: ActionTypes.SEARCH_REPOSITORIES_SUCCESS
+  payload: string[]
 }
 
 interface SearchRepositoriesErrorAction {
-  type: ActionType.SEARCH_REPOSITORIES_ERROR;
-  payload: string;
+  type: ActionTypes.SEARCH_REPOSITORIES_ERROR
+  payload: string
 }
 
 export type Action =
   | SearchRepositoriesAction
   | SearchRepositoriesSuccessAction
-  | SearchRepositoriesErrorAction;
+  | SearchRepositoriesErrorAction

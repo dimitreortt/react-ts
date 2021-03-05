@@ -1,13 +1,13 @@
-import axios from 'axios';
-import { Dispatch } from 'redux';
-import { ActionType } from '../action-types';
-import { Action } from '../actions';
+import { Action } from './../actions/index'
+import { ActionTypes } from './../action-types/index'
+import { Dispatch } from 'redux'
+import axios from 'axios'
 
 export const searchRepositories = (term: string) => {
   return async (dispatch: Dispatch<Action>) => {
     dispatch({
-      type: ActionType.SEARCH_REPOSITORIES,
-    });
+      type: ActionTypes.SEARCH_REPOSITORIES,
+    })
 
     try {
       const { data } = await axios.get(
@@ -17,21 +17,22 @@ export const searchRepositories = (term: string) => {
             text: term,
           },
         }
-      );
+      )
 
+      console.log(data)
       const names = data.objects.map((result: any) => {
-        return result.package.name;
-      });
+        return result.package.name
+      })
 
       dispatch({
-        type: ActionType.SEARCH_REPOSITORIES_SUCCESS,
+        type: ActionTypes.SEARCH_REPOSITORIES_SUCCESS,
         payload: names,
-      });
-    } catch (err) {
+      })
+    } catch (error) {
       dispatch({
-        type: ActionType.SEARCH_REPOSITORIES_ERROR,
-        payload: err.message,
-      });
+        type: ActionTypes.SEARCH_REPOSITORIES_ERROR,
+        payload: error.message,
+      })
     }
-  };
-};
+  }
+}
